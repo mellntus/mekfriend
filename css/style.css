@@ -322,3 +322,26 @@ button:active{
         padding: 8px 10px;
     }
 }
+
+
+
+/* CREATE POST */
+.create-post-input{
+    display: none;
+    background-color: grey;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+}
+
+/* .main-home, header{
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+} */

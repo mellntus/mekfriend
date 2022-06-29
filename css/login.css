@@ -1,0 +1,36 @@
+body{
+    background-color: #f3f3f3;
+}
+
+.container .row{
+    padding: 25vh 0vh;
+}
+
+#btnLogin{
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 572px){
+    .row .col.s6{
+        width: 100%;
+        margin: 5px 0px;
+    }
+
+    label{
+        font-size: 1rem;
+    }
+    .container .row{
+        padding: 20vh 0;
+    }
+}
+
+@media screen and (max-width: 412px){
+    .row .col.s6{
+        width: 100%;
+        margin: 5px 0px;
+    }
+
+    a{
+        font-size: smaller;
+    }
+}

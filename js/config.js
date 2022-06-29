@@ -1,6 +1,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import { getDatabase, ref, update, set, onValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, updatePassword } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, updatePassword,
+  GoogleAuthProvider, signInWithPopup
+} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBhAkQzK0qIsW0aUjSrtMyKv0Grd-GAfU8",
@@ -18,22 +20,39 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, (user) => {
-  if(user){
-      // location.replace("http://127.0.0.1:5500/index.html");
-      // window.stop();
-  }{
+// Initialize Facebook
+const providerGoogle = new GoogleAuthProvider();
 
+onAuthStateChanged(auth, (user) => {
+  if(user != null){
+      location.replace("http://127.0.0.1:5500/index.html");
+      window.stop();
+
+      let userSession = auth.currentUser;
+
+      console.log(userSession.email);
+
+      let directUserSession = ref(database, "users/" + userSession.uid + "/profile");
+
+      onValue(directUserSession, (snapshot) => {
+          const data = snapshot.val();
+      
+          var text = document.createTextNode(String(data["username"]));
+
+          document.getElementById("test-input").appendChild(text) ;
+        });
+  }else if(window.location == "http://127.0.0.1:5500/setting.html" || window.location == "http://127.0.0.1:5500/index.html" || window.location == "http://127.0.0.1:5500/profile.html"){
+      window.location = "http://127.0.0.1:5500/login.html";
   }
-  // }else if(window.location == "http://127.0.0.1:5500/setting.html" || window.location == "http://127.0.0.1:5500/index.html" || window.location == "http://127.0.0.1:5500/profile.html"){
-  //     window.location = "http://127.0.0.1:5500/login.html";
-  // }
 });
 
 export{
   app,
   database,
   auth,
+  providerGoogle,
+  GoogleAuthProvider,
+  signInWithPopup,
   ref,
   update,
   set,

@@ -1,14 +1,22 @@
 import{
     auth,
-    signOut
+    database,
+    signOut,
+    ref
 } from "./config.js"
 
 import{
     logout
 } from "./login.js"
-
-window.onload = function(){
     
+    // Button
+    let btnLogout = document.getElementById("btnLogout");
+    
+    if(btnLogout){
+        btnLogout.addEventListener("click", logout);
+        console.log("I got clicked");
+    }
+
     function createNewPost(){
         addRecentPost;
     }
@@ -191,14 +199,6 @@ window.onload = function(){
     function addPostComment(userId, commentId, postId, userImage, userName, userPostCommentDate, commentContent){
     
     }
-    
-    let btnLogout = document.getElementById("btnLogout");
-    
-    if(btnLogout){
-        btnLogout.addEventListener("click", logout);
-        console.log("I got clicked");
-    }
 
-    document.querySelector(".click-me").addEventListener("click", logout);
-}
+
 

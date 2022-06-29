@@ -17,8 +17,6 @@ import {
     
     if(btnLogin){
         btnLogin.addEventListener("click", login);
-    }if(btnSignUp){
-        btnSignUp.addEventListener("click", register);
     }
 
     // LOGIN
@@ -78,7 +76,7 @@ import {
                     console.log(registerAlamat);
                     console.log(registerPassword);
                     console.log(registerUsername);
-                    console.log(registerEmail);
+                    console.log(dt);
 
                 set(ref(database, 'users/' + user.uid + '/profile'),{
                     username: registerUsername,
@@ -86,12 +84,14 @@ import {
                     alamat: registerAlamat,
                     last_login: dt
             
+                }).then( () =>{
+                    alert("Data Inserted");
+                    window.location.href = "http://127.0.0.1:5500/index.html";
+                }).catch((error) => {
+                    alert("Data not Inserted" + error.message);
                 });
             
-                alert("SignUp Success" + registerUsername);
-                
-                location.reload();
-                return false;
+                // alert("SignUp Success" + registerUsername);
 
                 })
                 .catch((error) => {
@@ -103,6 +103,10 @@ import {
                 return;
             }
         } 
+    }
+
+    if(btnSignUp){
+        btnSignUp.addEventListener("click", register);
     }
 
 

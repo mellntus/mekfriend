@@ -1,24 +1,162 @@
 import{
     auth,
     database,
-    signOut,
-    ref
+    onValue,
+    push,
+    query,
+    orderByChild,
+    orderByValue,
+    ref,
+    set
 } from "./config.js"
 
 import{
     logout
 } from "./login.js"
+
+import{
+    uuidv4
+} from "./uuid.js"
     
     // Button
     let btnLogout = document.getElementById("btnLogout");
+    let btnCreatePost = document.getElementById("btnCreatePost");
+    let btnAddLike = document.getElementById("btn-like");
     
+    // test
+    let btnCheckLike = document.getElementById("btn-check-like");
+
+    if(btnCheckLike){
+        btnCheckLike.addEventListener("click", checkLike);
+    }
+    // 
+
     if(btnLogout){
         btnLogout.addEventListener("click", logout);
         console.log("I got clicked");
+    }if(btnCreatePost){
+        btnCreatePost.addEventListener("click", createNewPost);
+    }if(btnAddLike){
+        btnAddLike.addEventListener("click", addLike);
     }
 
+    // Test Add Like
+    function addLike(){
+
+        let userSession = auth.currentUser;
+        let postId = "b0f0747f-ff37-478b-b25a-b07dfe80b77c";
+
+        push(ref(database, 'users/' + userSession.uid + '/post/' + postId + '/like'),{
+            like : userSession.uid
+    
+        }).then( () =>{
+            alert("Data Updated");
+        }).catch((error) => {
+            alert("Data not Inserted" + error.message);
+        });
+
+        push(ref(database, 'posts/' + postId + '/like'),{
+            like : userSession.uid
+    
+        }).then( () =>{
+            alert("Data Inserted");
+        }).catch((error) => {
+            alert("Data not Inserted" + error.message);
+        });
+
+    }
+
+    function checkLike(){
+        let userSession = auth.currentUser;
+        let postId = "b0f0747f-ff37-478b-b25a-b07dfe80b77c";
+        let postRef = ref(database, 'posts/');
+        let userRef = ref(database, 'users/' + userSession.uid + "/post");
+        // let postRef = query(ref(database, 'posts/'), orderByChild("image"));
+        // let userRef = ref(database, 'users/');
+
+        onValue(postRef, (snapshot) => {
+            let dataPost = snapshot.val();
+            const countPost = snapshot.size;
+            console.log(dataPost);
+
+            for(let i in dataPost){
+                console.log(dataPost[i]["like"]);
+                let likeRef = ref(database, "posts/" + i + "/like");
+                onValue(likeRef, (likeData) => {
+                    let dataLike = likeData.val();
+                    for(let j in dataLike){
+                        console.log(dataLike[j]["like"]);
+                        
+                    }
+                });
+            }
+            
+        });
+        
+        onValue(userRef, (snapshot) => {
+            const dataUser = snapshot.size;
+            console.log(dataUser);
+        });
+    }
+
+    // Test Create Post
+
     function createNewPost(){
-        addRecentPost;
+        let inputText = document.getElementById("create-post-content").value;
+
+        if(!inputText){
+            alert("PLease Complete form");
+            return;
+        }else{
+            let userSession = auth.currentUser;
+            const postId = uuidv4();
+            const userpostId = postId;
+
+            let dt = new Date();
+
+                    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+                    let dd = String(dt.getDate());
+                    let mm = month[dt.getMonth()];
+                    let yyyy = dt.getFullYear();
+
+                    dt = dd + ' ' + mm + ' ' + yyyy;
+                
+                    console.log(userSession.uid);
+                    console.log(uuidv4());
+                    console.log("image here");
+                    console.log(userSession.displayName);
+                    console.log(dt);
+                    console.log(inputText);
+                    console.log("like here");
+
+                    // Set Data to User
+                    set(ref(database, 'users/' + userSession.uid + '/post/' + userpostId),{
+                        image: "image here",
+                        post_date: dt,
+                        post_content: inputText,
+                        like:""
+                
+                    }).then( () =>{
+                        alert("Data Inserted");
+                    }).catch((error) => {
+                        alert("Data not Inserted" + error.message);
+                    });
+
+                    // Set Data to Posts
+                    set(ref(database, "posts/" + postId),{
+                        userId: userSession.uid,
+                        image: "image here",
+                        post_date: dt,
+                        post_content: inputText,
+                        like:""
+                    }).then(() => {
+                        location.reload();
+                    }).catch((error) => {
+                        alert("Data not Inserted" + error.message)
+                    });
+        }
+        // addRecentPost;
     }
     
     function addRecentPost(userId, postId, userImage ,userName, userPostDate, postContent, postLike){

@@ -168,7 +168,7 @@ button:active{
     align-self: center; padding:0px 10px
 }
 
-.recent-profile #other-user-name{
+.recent-profile .other-user-name, .user-name{
     margin-bottom:0px
 }
 
@@ -249,6 +249,18 @@ button:active{
 
 .trigger-form h6{
     padding: 6px 10px;
+}
+
+[id^=user-name]{
+    text-transform: capitalize;
+}
+
+.text-muted{
+    font-size: smaller;
+}
+
+#create-post-content{
+    width: -webkit-fill-available;
 }
 
 @media screen and (max-width: 1100px) {

@@ -16,7 +16,6 @@ import {
         let btnLogin = document.getElementById("btnLogin");
         let btnSignUp = document.getElementById("btnRegister");
         let btnGoogle = document.getElementById("btnGoogle");
-        let btnFacebook = document.getElementById("btnFacebook");
 
         if(btnSignUp){
             btnSignUp.addEventListener("click", register);

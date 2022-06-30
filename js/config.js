@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-import { getDatabase, ref, update, set, onValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+import { getDatabase, ref, push, query, set, onValue, orderByChild, orderByValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, updatePassword,
   GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
@@ -25,8 +25,6 @@ const providerGoogle = new GoogleAuthProvider();
 
 onAuthStateChanged(auth, (user) => {
   if(user != null){
-      location.replace("http://127.0.0.1:5500/index.html");
-      window.stop();
 
       let userSession = auth.currentUser;
 
@@ -36,11 +34,15 @@ onAuthStateChanged(auth, (user) => {
 
       onValue(directUserSession, (snapshot) => {
           const data = snapshot.val();
-      
-          var text = document.createTextNode(String(data["username"]));
 
-          document.getElementById("test-input").appendChild(text) ;
+          console.log(data["username"]);
+
+          let username =document.getElementsByClassName("user-name");
+          for(let i = 0; i<username.length; i++){
+            username[i].innerHTML = data["username"];
+          }
         });
+      
   }else if(window.location == "http://127.0.0.1:5500/setting.html" || window.location == "http://127.0.0.1:5500/index.html" || window.location == "http://127.0.0.1:5500/profile.html"){
       window.location = "http://127.0.0.1:5500/login.html";
   }
@@ -54,7 +56,10 @@ export{
   GoogleAuthProvider,
   signInWithPopup,
   ref,
-  update,
+  push,
+  query,
+  orderByChild,
+  orderByValue,
   set,
   onValue,
   updateProfile,

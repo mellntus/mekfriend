@@ -51,10 +51,10 @@
                                     <a class="dropdown-item" href="profile.html">
                                         <div class="d-flex" id="dropdown-profile">
                                             <div class="profile-image">
-                                                <img src="image/MekFriend.png" id="user-image" alt="" width="50px" height="60px">
+                                                <img src="image/MekFriend.png" class="user-image" id="user-image3" alt="" width="50px" height="60px">
                                             </div>
                                             <div class="profile-name">
-                                                <h6 id="test-inputs"></h6>
+                                                <h6 class="user-name" id="user-name3"></h6>
                                                 <h6>Lihat profil anda</h6>
                                             </div>
                                         </div>
@@ -86,10 +86,10 @@
                 <div class="left-col-profile">
                     <div class="row left-content ">
                         <div class="col-2">
-                            <img src="image/miru_4.png" id="user-image" alt="" width="40px" height="50px">
+                            <img src="image/miru_4.png" class="user-image" id="user-image1" alt="" width="40px" height="50px">
                         </div>
                         <div class="col">
-                            <h6 id="test-inputs"></h6>
+                            <h6 class="user-name" id="user-name1"></h6>
                         </div>
                     </div>
                     <div class="row left-content">
@@ -117,10 +117,10 @@
                     <h6 class="text-muted">Shortcut</h6>
                     <div class="row left-content ">
                         <div class="col-2 picture-tag">
-                            <img src="image/miru_4.png" id="user-image" alt="" width="40px" height="50px">
+                            <img src="image/miru_4.png" class="user-image" id="user-image2" alt="" width="40px" height="50px">
                         </div>
                         <div class="col name-tag">
-                            <h6 id="test-inputs"></h6>
+                            <h6 class="user-name" id="user-name2"></h6>
                         </div>
                     </div>
                     <div class="row left-content">
@@ -155,9 +155,9 @@
                     <!-- Create Post -->
                     <div class="create-post">
                         <div class="top">
-                            <div class="d-flex" id="create-post-trigger" data-toggle="modal" data-target="#exampleModalScrollable">
-                                <img src="image/miru_4.png" id="user-image" alt="" width="40px" height="50px">
-                                <div class="trigger-form">
+                            <div class="d-flex" id="create-post-trigger">
+                                <img src="image/miru_4.png" class="user-image" id="user-image4" alt="" width="40px" height="50px">
+                                <div class="trigger-form" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <h6>Apa yang anda pikirkan?</h6>
                                 </div>
                             </div>
@@ -183,100 +183,56 @@
 
                     <!-- Recent Post -->
                     <div class="recent-post">
-                        <div class="recent-header">
-                            <div class="d-flex" id="recent-post-header">
-                                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                                <div class="recent-profile">
-                                    <h6 id="other-user-name">Alroy Hery</h6>
-                                    <h6 class="text-muted" id="recent-post-date">16 September 2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="recent-main">
-                            <div class="container">
-                                <p id="recent-post-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor culpa architecto voluptatum odit, magni, amet est optio, illo nesciunt et adipisci dolores nemo sed autem sunt dignissimos reiciendis officiis. Nostrum quisquam repudiandae dolorum eos enim. Recusandae, consequuntur! Quas dolorum quos veritatis, rem corrupti voluptates sapiente dicta harum amet magni deserunt!</p>
-                                <div class="like-count">
-                                    <p class="text-muted" id="like-count">16 orang menyukai ini <span class="material-icons" style="font-size: small;">thumb_up</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="solid">
-                        <div class="recent-bottom">
-                            <div class="row">
-                                <div class="left-sub col d-flex" id="btn-like" >
-                                    <span class="material-icons">thumb_up</span>
-                                    <h6> Like</h6>
-                                </div>
-                                <div class="mid-sub col d-flex" id="btn-cmd" >
-                                    <span class="material-icons">comment</span>
-                                    <h6> Comment</h6>
-                                </div>
-                                <div class="right-sub col d-flex" id="btn-share" >
-                                    <span class="material-icons">share</span>
-                                    <h6> Share</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="solid">
-                        <div class="comment-section">
-                            <form action="">
-                                <div class="d-flex" id="form-create-comment">
-                                    <img src="image/miru_4.png" id="user-image" alt="" width="40px" height="50px">
-                                    <div class="comment-post d-flex">
-                                        <textarea name="comment-input" id="comment-input" placeholder="Put your comment here" required></textarea>
-                                        <button type="button" id="btn-comment" >Send</button>
+                        <form action="">
+                            <input type="text" id="recent-post-id" hidden>
+                            <input type="text" id="recent-userpost-id" hidden>
+                            <div class="recent-header">
+                                <div class="d-flex" id="recent-post-header">
+                                    <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
+                                    <div class="recent-profile">
+                                        <h6 class="other-user-name">Alroy Hery</h6>
+                                        <h6 class="text-muted" id="recent-post-date">16 September 2022</h6>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="recent-post">
-                        <div class="recent-header">
-                            <div class="d-flex" id="recent-post-header">
-                                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                                <div class="recent-profile">
-                                    <h6 id="other-user-name">Alroy Hery</h6>
-                                    <h6 class="text-muted" id="recent-post-date">16 September 2022</h6>
-                                </div>
                             </div>
-                        </div>
-                        <div class="recent-main">
-                            <div class="container">
-                                <p id="recent-post-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor culpa architecto voluptatum odit, magni, amet est optio, illo nesciunt et adipisci dolores nemo sed autem sunt dignissimos reiciendis officiis. Nostrum quisquam repudiandae dolorum eos enim. Recusandae, consequuntur! Quas dolorum quos veritatis, rem corrupti voluptates sapiente dicta harum amet magni deserunt!</p>
-                                <div class="like-count">
-                                    <p class="text-muted" id="like-count">16 orang menyukai ini <span class="material-icons" style="font-size: small;">thumb_up</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="solid">
-                        <div class="recent-bottom">
-                            <div class="row">
-                                <div class="left-sub col d-flex" id="btn-like" >
-                                    <span class="material-icons">thumb_up</span>
-                                    <h6> Like</h6>
-                                </div>
-                                <div class="mid-sub col d-flex" id="btn-cmd" >
-                                    <span class="material-icons">comment</span>
-                                    <h6> Comment</h6>
-                                </div>
-                                <div class="right-sub col d-flex" id="btn-share" >
-                                    <span class="material-icons">share</span>
-                                    <h6> Share</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="solid">
-                        <div class="comment-section">
-                            <form action="">
-                                <div class="d-flex" id="form-create-comment">
-                                    <img src="image/miru_4.png" id="user-image" alt="" width="40px" height="50px">
-                                    <div class="comment-post d-flex">
-                                        <textarea name="comment-input" id="comment-input" placeholder="Put your comment here" required></textarea>
-                                        <button type="button" id="btn-comment" >Send</button>
+                            <div class="recent-main">
+                                <div class="container">
+                                    <p id="recent-post-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor culpa architecto voluptatum odit, magni, amet est optio, illo nesciunt et adipisci dolores nemo sed autem sunt dignissimos reiciendis officiis. Nostrum quisquam repudiandae dolorum eos enim. Recusandae, consequuntur! Quas dolorum quos veritatis, rem corrupti voluptates sapiente dicta harum amet magni deserunt!</p>
+                                    <div class="like-count">
+                                        <p class="text-muted" id="like-count">16 orang menyukai ini <span class="material-icons" style="font-size: small;">thumb_up</span></p>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            <hr class="solid">
+                            <div class="recent-bottom">
+                                <div class="row">
+                                    <div role="button" class="left-sub col d-flex" id="btn-like" >
+                                        <span class="material-icons">thumb_up</span>
+                                        <h6> Like</h6>
+                                    </div>
+                                    <div class="mid-sub col d-flex" id="btn-cmd" >
+                                        <span class="material-icons">comment</span>
+                                        <h6> Comment</h6>
+                                    </div>
+                                    <div class="right-sub col d-flex" id="btn-share" >
+                                        <span class="material-icons">share</span>
+                                        <h6> Share</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="solid">
+                            <div class="comment-section">
+                                <form action="">
+                                    <div class="d-flex" id="form-create-comment">
+                                        <img src="image/miru_4.png" class="user-image" id="user-image5" alt="" width="40px" height="50px">
+                                        <div class="comment-post d-flex">
+                                            <textarea name="comment-input" id="comment-input" placeholder="Put your comment here" required></textarea>
+                                            <button type="button" id="btn-comment" >Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -299,7 +255,7 @@
                                 <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
                             </div>
                             <div class="col">
-                                <h6 id="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
                             </div>
                         </div>
                         <div class="row right-content ">
@@ -307,7 +263,7 @@
                                 <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
                             </div>
                             <div class="col">
-                                <h6 id="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
                             </div>
                         </div>
                         <div class="row right-content ">
@@ -315,7 +271,7 @@
                                 <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
                             </div>
                             <div class="col">
-                                <h6 id="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
                             </div>
                         </div>
                         <div class="row right-content ">
@@ -323,7 +279,7 @@
                                 <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
                             </div>
                             <div class="col">
-                                <h6 id="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
                             </div>
                         </div>
                     </div>
@@ -343,8 +299,44 @@
         </div>
     </main>
 
-    <p id="test-input"></p>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="">
+                <div class="modal-body">
+                    <div class="d-flex" id="recent-post-header">
+                        <img src="image/miru_4.png" id="user-image6" alt="" width="40px" height="50px">
+                        <div class="recent-profile">
+                            <h6 class="user-name" id="user-name4">Erlangga Adidarma H</h6>
+                            <h6 class="text-muted" id="create-post-date">16 September 2022</h6>
+                        </div>
+                    </div>
+                    <textarea name="create-post-content" id="create-post-content"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnCreatePost">Post</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
 
-    <script type="module" src="js/index.js"></script>
+    <button type="button" id="btn-check-like">Check like here</button>
+
+    <label for="input-image-name">Image Name</label>
+    <input type="text" id="input-image-name" name="input-image-name">
+
+    <img id="myimg"><label id="loadingProgress"></label>
+
+    <button type="button">Select Image</button>
+    <button type="button">Upload Image</button>
+    <button type="button">Get Image</button>
+    <script defer type="module" src="js/index.js"></script>
 </body>
 </html>

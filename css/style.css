@@ -85,7 +85,7 @@ button:active{
     padding-left: 10px;
 }
 
-#user-image:hover, #other-user-image:hover{
+.user-image:hover, .other-user-image:hover{
     cursor: pointer;
 }
 
@@ -100,7 +100,7 @@ button:active{
     height: 40vh;
 }
 
-#user-image, #other-user-image{
+.user-image, .other-user-image{
     border-radius: 20px;
 }
 
@@ -154,6 +154,11 @@ button:active{
 }
 
 /* RECENT POST */
+.recent-post-section{
+    max-height: 65vh;
+    overflow-y:scroll;
+}
+
 .recent-post{
     background-color: #fff;
     border-radius:10px; 
@@ -184,7 +189,7 @@ button:active{
     font-size:small
 }
 
-#form-create-comment{
+.form-create-comment{
     padding: 5px 10px;
 }
 
@@ -196,11 +201,6 @@ button:active{
     width:100%; 
     border-radius: 10px; 
     padding: 0px 10px;
-}
-
-#btn-comment{
-    margin:1px 5px; 
-    height:fit-content;
 }
 
 /* Right Col */
@@ -226,8 +226,8 @@ button:active{
 }
 
 /* Left Col Profile */
-.left-col-profile{
-    height: 40vh;
+#left-col{
+    width: 20%;
 }
 
 /* Comment Profile */
@@ -251,6 +251,10 @@ button:active{
     padding: 6px 10px;
 }
 
+.left-sub .trigger-form h6, .mid-sub .trigger-form h6, .right-sub .trigger-form h6{
+    font-size: smaller;
+}
+
 [id^=user-name]{
     text-transform: capitalize;
 }
@@ -259,8 +263,9 @@ button:active{
     font-size: smaller;
 }
 
-#create-post-content{
+#create-post-content, #create-post-modal-comment{
     width: -webkit-fill-available;
+    max-height: 50vh;
 }
 
 @media screen and (max-width: 1100px) {
@@ -332,6 +337,15 @@ button:active{
 
     .trigger-form h6{
         padding: 8px 10px;
+    }
+
+    .create-post-content textarea{
+        margin-top: 5px;
+    }
+
+    .recent-post-section{
+        height: 100%;
+        overflow-y: none;
     }
 }
 

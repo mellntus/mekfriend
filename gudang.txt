@@ -1,0 +1,61 @@
+<!-- List Comment -->
+<div class="list-recent-comment">
+
+    <!-- INSERT LIST COMMENT HERE -->
+    <div class="recent-comment my-2" style="background-color: #f3f3f3; padding: 5px 10px; border-radius: 10px">
+        <div class="header-comment">
+            <div class="d-flex">
+                <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
+                <div class="d-block" style="align-self: center; margin:0px 5px">
+                    <h6 style="margin: 0;">Erlangga AH</h6>
+                    <h6 class="text-muted" style="margin: 0;">16 January 2002</h6>
+                </div>
+            </div>
+        </div>
+        <div class="main-comment">
+            <p>Hello world</p>
+        </div>
+    </div>
+</div>
+<!-- End List Comment -->
+
+<!-- Friends -->
+<div class="friend-section">
+    <p>Friends</p>
+    <div class="friend-content">
+        <div class="row right-content ">
+            <div class="col-2">
+                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
+            </div>
+            <div class="col">
+                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+            </div>
+        </div>
+        <div class="row right-content ">
+            <div class="col-2">
+                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
+            </div>
+            <div class="col">
+                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+            </div>
+        </div>
+        <div class="row right-content ">
+            <div class="col-2">
+                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
+            </div>
+            <div class="col">
+                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+            </div>
+        </div>
+        <div class="row right-content ">
+            <div class="col-2">
+                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
+            </div>
+            <div class="col">
+                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
+            </div>
+        </div>
+    </div>
+    <hr class="solid">
+</div>
+<!-- End Friend Section -->

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <!-- Header -->
     <header >
         <nav class="navbar navbar-expand-lg">
@@ -34,15 +35,11 @@
               </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <form class="d-flex" role="search" id="search-filter">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary" type="submit">Search</button>
-                        </form>
                         <li class="nav-item" id="nav-home">
                             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item" id="nav-profile">
-                            <a class="nav-link" href="profile.html">Profile</a>
+                            <a class="nav-link" href="#">Profile</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -54,8 +51,8 @@
                                                 <img src="image/MekFriend.png" class="user-image" id="user-image3" alt="" width="50px" height="60px">
                                             </div>
                                             <div class="profile-name">
-                                                <h6 class="user-name" id="user-name3"></h6>
-                                                <h6>Lihat profil anda</h6>
+                                                <h6 class="user-name" id="user-name"></h6>
+                                                <h6 class="text-muted"><small>Lihat profil anda</small></h6>
                                             </div>
                                         </div>
                                     </a>
@@ -76,6 +73,7 @@
             </div>
         </nav>
     </header>        
+    <!-- End Header -->
     
     <!-- Main -->
     <main>
@@ -84,63 +82,18 @@
 
                 <!-- Left Col Profile -->
                 <div class="left-col-profile">
-                    <div class="row left-content ">
-                        <div class="col-2">
-                            <img src="image/miru_4.png" class="user-image" id="user-image1" alt="" width="40px" height="50px">
+                    <form action="">
+                        <div class="img-profile" style="text-align: center;">
+                            <img src="image/sincan.png" alt="" style="width: -webkit-fill-available; border-radius: 50px; height: 30vh;">
                         </div>
-                        <div class="col">
-                            <h6 class="user-name" id="user-name1"></h6>
+                        <div class="data-profile">
+                            <h6 class="user-name my-1" id="user-name" style="font-size: x-large;"></h6>
+                            <h6 class="user-alamat my-1" id="user-alamat" style="font-size: small;">Bulak Teko City, Jakarta Utara</h6>
                         </div>
-                    </div>
-                    <div class="row left-content">
-                        <div class="col-2" id="group-mark">
-                            <span class="material-symbols-outlined">group</span>
-                        </div>
-                        <div class="col" id="friend-mark">
-                            <h6><strong>Friends</strong></h6>
-                            <h6 class="text-muted" id="total-friend"><small>96 Friends</small></h6>
-                        </div>
-                    </div>
-                    <div class="row left-content">
-                        <div class="col-2">
-                            <span class="material-symbols-outlined">storefront</span>
-                        </div>
-                        <div class="col">
-                            <h6><strong>Marketplace</strong></h6>
-                        </div>
-                    </div>
+                        <button type="button" class="btn-edit-profile my-2" id="btn-edit-profile" style="width: 100%;">Edit Profile</button>
+                    </form>
                 </div>
-                <hr class="solid">
-
-                <!-- Left Col Shortcut -->
-                <div class="left-col-shortcut">
-                    <h6 class="text-muted">Shortcut</h6>
-                    <div class="row left-content ">
-                        <div class="col-2 picture-tag">
-                            <img src="image/miru_4.png" class="user-image" id="user-image2" alt="" width="40px" height="50px">
-                        </div>
-                        <div class="col name-tag">
-                            <h6 class="user-name" id="user-name2"></h6>
-                        </div>
-                    </div>
-                    <div class="row left-content">
-                        <div class="col-2 group-tag">
-                            <span class="material-symbols-outlined">group</span>
-                        </div>
-                        <div class="col name-tag">
-                            <h6><strong>Friends</strong></h6>
-                            <h6 class="text-muted"><small>96 Friends</small></h6>
-                        </div>
-                    </div>
-                    <div class="row left-content">
-                        <div class="col-2 group-tag">
-                            <span class="material-symbols-outlined">storefront</span>
-                        </div>
-                        <div class="col name-tag">
-                            <h6><strong>Marketplace</strong></h6>
-                        </div>
-                    </div>
-                </div>
+                <!-- End Left Col Profile -->
 
                 <!-- Copyright -->
                 <div class="copyright">
@@ -150,92 +103,49 @@
 
             <!-- Mid Col -->
             <div class="col-7" id="mid-col">
+                <!-- Mid -->
                 <div class="mid-content">
-
+                    
                     <!-- Create Post -->
-                    <div class="create-post">
-                        <div class="top">
-                            <div class="d-flex" id="create-post-trigger">
-                                <img src="image/miru_4.png" class="user-image" id="user-image4" alt="" width="40px" height="50px">
-                                <div class="trigger-form" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <h6>Apa yang anda pikirkan?</h6>
+                    <div class="create-post-section">
+                        <div class="create-post">
+                            <div class="top">
+                                <div class="d-flex" id="create-post-trigger">
+                                    <img src="image/miru_4.png" class="user-image" id="user-image" alt="" width="40px" height="50px">
+                                    <div class="trigger-form" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <h6>Apa yang anda pikirkan?</h6>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr class="solid">
-                        <div class="bottom">
-                            <div class="row">
-                                <div class="left-sub col d-flex" id="btn-video">
-                                    <span class="material-icons">videocam</span>
-                                    <h6> Livestream</h6>
-                                </div>
-                                <div class="mid-sub col d-flex" id="btn-image">
-                                    <span class="material-icons">image</span>
-                                    <h6> Photo / Video</h6>
-                                </div>
-                                <div class="right-sub col d-flex" id="btn-activity">
-                                    <span class="material-icons">place</span>
-                                    <h6> Activity</h6>
+                            <hr class="solid">
+                            <div class="bottom">
+                                <div class="row">
+                                    <div class="left-sub col d-flex trigger-form" id="btn-video" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <span class="material-icons">videocam</span>
+                                        <h6> Livestream</h6>
+                                    </div>
+                                    <div class="mid-sub col d-flex trigger-form" id="btn-image" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <span class="material-icons">image</span>
+                                        <h6> Photo / Video</h6>
+                                    </div>
+                                    <div class="right-sub col d-flex trigger-form" id="btn-activity" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <span class="material-icons">place</span>
+                                        <h6> Activity</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- End Create Post -->
 
                     <!-- Recent Post -->
-                    <div class="recent-post">
-                        <form action="">
-                            <input type="text" id="recent-post-id" hidden>
-                            <input type="text" id="recent-userpost-id" hidden>
-                            <div class="recent-header">
-                                <div class="d-flex" id="recent-post-header">
-                                    <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                                    <div class="recent-profile">
-                                        <h6 class="other-user-name">Alroy Hery</h6>
-                                        <h6 class="text-muted" id="recent-post-date">16 September 2022</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-main">
-                                <div class="container">
-                                    <p id="recent-post-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor culpa architecto voluptatum odit, magni, amet est optio, illo nesciunt et adipisci dolores nemo sed autem sunt dignissimos reiciendis officiis. Nostrum quisquam repudiandae dolorum eos enim. Recusandae, consequuntur! Quas dolorum quos veritatis, rem corrupti voluptates sapiente dicta harum amet magni deserunt!</p>
-                                    <div class="like-count">
-                                        <p class="text-muted" id="like-count">16 orang menyukai ini <span class="material-icons" style="font-size: small;">thumb_up</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="solid">
-                            <div class="recent-bottom">
-                                <div class="row">
-                                    <div role="button" class="left-sub col d-flex" id="btn-like" >
-                                        <span class="material-icons">thumb_up</span>
-                                        <h6> Like</h6>
-                                    </div>
-                                    <div class="mid-sub col d-flex" id="btn-cmd" >
-                                        <span class="material-icons">comment</span>
-                                        <h6> Comment</h6>
-                                    </div>
-                                    <div class="right-sub col d-flex" id="btn-share" >
-                                        <span class="material-icons">share</span>
-                                        <h6> Share</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="solid">
-                            <div class="comment-section">
-                                <form action="">
-                                    <div class="d-flex" id="form-create-comment">
-                                        <img src="image/miru_4.png" class="user-image" id="user-image5" alt="" width="40px" height="50px">
-                                        <div class="comment-post d-flex">
-                                            <textarea name="comment-input" id="comment-input" placeholder="Put your comment here" required></textarea>
-                                            <button type="button" id="btn-comment" >Send</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </form>
+                    <div class="recent-post-section">
+                        
                     </div>
+                    <!-- End Recent Post -->
                 </div>
             </div>
+            <!-- End Mid Col -->
 
             <!-- Right Col -->
             <div class="col" id="right-col">
@@ -245,98 +155,173 @@
                     <p>Sponsor</p>
                     <hr class="solid">
                 </div>
+                <!-- End Sponsor -->
 
                 <!-- Friends -->
                 <div class="friend-section">
                     <p>Friends</p>
                     <div class="friend-content">
-                        <div class="row right-content ">
-                            <div class="col-2">
-                                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                            </div>
-                            <div class="col">
-                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
-                            </div>
-                        </div>
-                        <div class="row right-content ">
-                            <div class="col-2">
-                                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                            </div>
-                            <div class="col">
-                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
-                            </div>
-                        </div>
-                        <div class="row right-content ">
-                            <div class="col-2">
-                                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                            </div>
-                            <div class="col">
-                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
-                            </div>
-                        </div>
-                        <div class="row right-content ">
-                            <div class="col-2">
-                                <img src="image/miru_4.png" id="other-user-image" alt="" width="40px" height="50px">
-                            </div>
-                            <div class="col">
-                                <h6 class="other-user-name"><strong>Pergelangan Tangan</strong></h6>
-                            </div>
-                        </div>
                     </div>
-                    <hr class="solid">
                 </div>
+                <hr class="solid">
+                <!-- End Friend Section -->
+                
+                <!-- Marketplace -->
+                <div class="marketplace-section">
+                    <p>Marketplace</p>
+                    <div class="marketplace-content">
+                    </div>
+                </div>
+                <hr class="solid">
+                <!-- End Marketplace Section -->
+                
+                <!-- Games -->
+                <div class="games-section">
+                    <p>Games</p>
+                    <div class="games-content">
+                    </div>
+                </div>
+                <hr class="solid">
+                <!-- End Games Section -->
+
             </div>
-        </div>
-        <div class="create-post-input">
-            <h6 style="font-size:xx-large">Buat Postingan</h6>
-            <hr class="solid">
-            <div class="form-input-post" style="padding: 5px 0px;">
-                <form action="">
-                    <textarea name="input-post" id="input-post" placeholder="Apa yang sedang kamu pikirkan" style="width: 100%; padding: 5px 10px;"></textarea>
-                    <button type="button" id="btn-post"> Send</button>
-                </form>
-            </div>
+            <!-- End Right Col -->
+
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Modal Create Post -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="">
-                <div class="modal-body">
-                    <div class="d-flex" id="recent-post-header">
-                        <img src="image/miru_4.png" id="user-image6" alt="" width="40px" height="50px">
-                        <div class="recent-profile">
-                            <h6 class="user-name" id="user-name4">Erlangga Adidarma H</h6>
-                            <h6 class="text-muted" id="create-post-date">16 September 2022</h6>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <div class="d-flex" id="recent-post-header">
+                            <img src="image/miru_4.png" id="user-image6" alt="" width="40px" height="50px">
+                            <div class="recent-profile">
+                                <h6 class="user-name" id="user-name"></h6>
+                                <h6 class="text-muted" id="create-post-date">16 September 2022</h6>
+                            </div>
                         </div>
+                        <textarea name="create-post-content" id="create-post-content"></textarea>
                     </div>
-                    <textarea name="create-post-content" id="create-post-content"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btnCreatePost">Post</button>
-                </div>
-            </form>
-        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnCreatePost">Post</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+    <!-- End Modal -->
 
-    <button type="button" id="btn-check-like">Check like here</button>
+    <!-- <button type="button" class="btnShowComment" id="btnShowComment-${dataPost[i]["id"]}" style="font-size:medium; width:100%" data-bs-toggle="modal" data-bs-target="#exampleModalComment">Show Comment</button> -->
 
-    <label for="input-image-name">Image Name</label>
-    <input type="text" id="input-image-name" name="input-image-name">
+    <!-- Modal Comment Post -->
+    <div class="modal fade" id="exampleModalComment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Show Comment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body" style="max-height:70vh">
+                        <div>
+                            <div class="d-flex" id="recent-post-header">
+                                <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
+                                <div class="recent-profile">
+                                    <h6 class="user-name" id="user-name">Erlangga Adidarma H</h6>
+                                    <h6 class="text-muted" id="create-post-date" class="create-post-date">16 September 2022</h6>
+                                </div>
+                            </div>
+                            <p id="recent-showpost-content">${dataPost[i]["post_content"]}</p>
+                            <hr style="margin: 0px;">
+                            <div class="recent-bottom">
+                                <div class="row">
+                                    <div role='button' class="left-sub col d-flex btn-like" id='btn-like-${dataPost[i]["id"]}'>
+                                        <span class="material-icons">thumb_up</span>
+                                        <h6> Like</h6>
+                                    </div>
+                                    <div class="mid-sub col d-flex btn-cmd" id='btn-cmd-${dataPost[i]["id"]}' >
+                                        <span class="material-icons">comment</span>
+                                        <h6> Comment</h6>
+                                    </div>
+                                    <div class="right-sub col d-flex btn-share" id='btn-share-${dataPost[i]["id"]}' >
+                                        <span class="material-icons">share</span>
+                                        <h6> Share</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <img id="myimg"><label id="loadingProgress"></label>
-
-    <button type="button">Select Image</button>
-    <button type="button">Upload Image</button>
-    <button type="button">Get Image</button>
+                        <!--  -->
+                        <hr style="margin: 0;">
+                        <div class="list-recent-comment">
+                            <div class="recent-comment my-2" style="background-color: #f3f3f3; padding: 5px 10px; border-radius: 10px">
+                                <div class="header-comment">
+                                    <div class="d-flex">
+                                        <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
+                                        <div class="d-block" style="align-self: center; margin:0px 5px">
+                                            <h6 style="margin: 0;">Erlangga AH</h6>
+                                            <h6 class="text-muted" style="margin: 0;">16 January 2002</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main-comment">
+                                    <p>Hello world</p>
+                                </div>
+                            </div>
+                            <div class="recent-comment my-2" style="background-color: #f3f3f3; padding: 5px 10px; border-radius: 10px">
+                                <div class="header-comment">
+                                    <div class="d-flex">
+                                        <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
+                                        <div class="d-block" style="align-self: center; margin:0px 5px">
+                                            <h6 style="margin: 0;">Erlangga AH</h6>
+                                            <h6 class="text-muted" style="margin: 0;">16 January 2002</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main-comment">
+                                    <p>Hello world</p>
+                                </div>
+                            </div>
+                            <div class="recent-comment my-2" style="background-color: #f3f3f3; padding: 5px 10px; border-radius: 10px">
+                                <div class="header-comment">
+                                    <div class="d-flex">
+                                        <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
+                                        <div class="d-block" style="align-self: center; margin:0px 5px">
+                                            <h6 style="margin: 0;">Erlangga AH</h6>
+                                            <h6 class="text-muted" style="margin: 0;">16 January 2002</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main-comment">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione doloremque aut quo delectus, explicabo culpa ipsa cupiditate sed corrupti facere itaque distinctio sequi praesentium iusto ut. Explicabo facere natus, incidunt magni aliquam laudantium ratione sunt error, quod iste expedita officiis aut saepe beatae quae harum est tenetur recusandae veniam omnis.</p>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="modal-footer p-0">
+                        <div class="d-flex form-create-comment w-100">
+                        <img src="image/miru_4.png" class="user-image" id="user-image" alt="" width="40px" height="50px">
+                        <div class="comment-post d-flex">
+                        <textarea name="create-showpost-comment" id="create-showpost-comment" class="create-post-comment" placeholder="Put your comment here" style="margin-right: 10px; max-height:82px" required></textarea>
+                            <div class="d-block">
+                                <button type="button" class="btn-comment-show" id="btn-comment-show" style="height: fit-content; width:100%; margin-bottom:3px;">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script defer type="module" src="js/index.js"></script>
+
 </body>
 </html>

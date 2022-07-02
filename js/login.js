@@ -5,6 +5,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     ref,
+    push,
     set,
     onValue,
     signInWithEmailAndPassword,
@@ -129,20 +130,30 @@ import {
 
                 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-                        let dd = String(dt.getDate());
-                        let mm = month[dt.getMonth()];
-                        let yyyy = dt.getFullYear();
+                let dd = String(dt.getDate());
+                let mm = month[dt.getMonth()];
+                let yyyy = dt.getFullYear();
 
-                        dt = dd + ' ' + mm + ' ' + yyyy;
+                dt = dd + ' ' + mm + ' ' + yyyy;
+
+                // const postData = {
+                //     last_login: dt,
+                // }
+
+                // const newProfileKey = push(child(ref(database), 'users/' + userGoogle.uid + '/profile')).key;
+
+                // const updateUser = {};
+
+                // updateUser[newProfileKey] = postData;
+
+                // return updateUser(ref(database), updates);
                 
-                set(ref(database, 'users/' + userGoogle.uid + '/profile'),{
-                    username: userGoogle.displayName,
-                    email: userGoogle.email,
-                    alamat: "",
-                    last_login: dt
+                push(ref(database, 'users/' + userGoogle.uid + '/profile'),{
+                    last_login: dt,
+                    alamat : ""
             
                 }).then( () =>{
-                    alert("Data Inserted, Welcome " + userGoogle.displayName);
+                    alert("Data Inserted, Welcome " + user.displayName);
                     window.location.href = "http://127.0.0.1:5500/index.html";
                 }).catch((error) => {
                     alert("Data not Inserted" + error.message);
@@ -150,15 +161,7 @@ import {
 
 
             }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-                console.log(errorMessage);
+                alert("Login Error " + error.message);
             });
         }
 

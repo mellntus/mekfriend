@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-import { getDatabase, ref, push, query, set, onValue, orderByChild, orderByValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+import { getDatabase, ref, push, remove, query, set, onValue, orderByChild, orderByValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, updatePassword,
   GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
@@ -21,7 +21,7 @@ const database = getDatabase(app);
 const auth = getAuth(app);
 
 // Initialize Facebook
-const providerGoogle = new GoogleAuthProvider();
+const providerGoogle = new GoogleAuthProvider(app);
 
 onAuthStateChanged(auth, (user) => {
   if(user != null){
@@ -35,11 +35,15 @@ onAuthStateChanged(auth, (user) => {
       onValue(directUserSession, (snapshot) => {
           const data = snapshot.val();
 
-          console.log(data["username"]);
+          // console.log(data["username"]);
 
           let username =document.getElementsByClassName("user-name");
           for(let i = 0; i<username.length; i++){
-            username[i].innerHTML = data["username"];
+            if(data["username"] != null){
+              username[i].innerHTML = data["username"];
+            }else{
+              username[i].innerHTML = user.displayName;
+            }
           }
         });
       
@@ -57,6 +61,7 @@ export{
   signInWithPopup,
   ref,
   push,
+  remove,
   query,
   orderByChild,
   orderByValue,

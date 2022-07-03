@@ -8,6 +8,7 @@ import {
     push,
     set,
     onValue,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signOut
@@ -148,7 +149,9 @@ import {
 
                 // return updateUser(ref(database), updates);
                 
-                push(ref(database, 'users/' + userGoogle.uid + '/profile'),{
+                set(ref(database, 'users/' + userGoogle.uid + '/profile'),{
+                    username : userGoogle.displayName,
+                    email : userGoogle.email,
                     last_login: dt,
                     alamat : ""
             
@@ -158,7 +161,6 @@ import {
                 }).catch((error) => {
                     alert("Data not Inserted" + error.message);
                 });
-
 
             }).catch((error) => {
                 alert("Login Error " + error.message);

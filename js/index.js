@@ -5,10 +5,12 @@ import{
     remove,
     push,
     query,
+    update,
     orderByChild,
     orderByValue,
     ref,
-    set
+    set,
+    updatePassword
 } from "./config.js"
 
 import{
@@ -27,17 +29,20 @@ import{
 // Button
 let btnLogout = document.getElementById("btnLogout");
 let btnCreatePost = document.getElementById("btnCreatePost");
+let btnEditProfile = document.getElementById("btn-edit-profile");
+let btnSaveProfile = document.getElementById("btnSaveProfile");
+let btnChangePassword = document.getElementById("btnChangePassword");
 
-// test
+// List Div
+let divEdit = document.getElementById("get-profile-data");
 
-let btnCheckPost = document.getElementById("btn-check-post");
-
-if(btnCheckPost){
-    btnCheckPost.addEventListener("click", showPostData);
-}
-// 
-
-if(btnLogout){
+if(btnEditProfile){
+    btnEditProfile.addEventListener("click", editProfile);
+}if(btnSaveProfile){
+    btnSaveProfile.addEventListener("click", saveProfile);
+}if(btnChangePassword){
+    btnChangePassword.addEventListener("click", changePassword);
+}if(btnLogout){
     btnLogout.addEventListener("click", logout);
     console.log("I got clicked");
 }if(btnCreatePost){
@@ -126,8 +131,6 @@ function createNewPost(){
             alert("Data not Inserted" + error.message)
         });
 
-
-        addRecentPost();
     }
 }
 
@@ -219,15 +222,18 @@ function showPostData(){
                                                 <div class="d-flex" id="recent-post-header">
                                                     <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
                                                     <div class="recent-profile">
-                                                        <h6 class="user-name" id="user-name">Erlangga</h6>
-                                                        <h6 class="text-muted" id="create-post-date" class="create-post-date">16 September 2022</h6>
+                                                        <h6 class="user-name" id="user-name">${userName}</h6>
+                                                        <h6 class="text-muted" id="create-post-date" class="create-post-date">${dataPost[i]["post_date"]}</h6>
                                                     </div>
                                                 </div>
-                                                <p id="recent-showpost-content">${dataPost[i]["post_content"]}</p>
+                                                <p class="recent-showpost-content" id="recent-showpost-content">${dataPost[i]["post_content"]}</p>
+                                                <div class="div-like-count">
+                                                    <p class="text-muted like-showcomment-count" id="like-showcomment-count">${likeCount} orang menyukai ini <span class="material-icons" style="font-size: small;">thumb_up</span></p>
+                                                </div>
                                                 <hr style="margin: 0px;">
                                                 <div class="recent-bottom">
                                                     <div class="row">
-                                                        <div role='button' class="left-sub col d-flex btn-showcomment-like" id='btn-like-${dataPost[i]["id"]}'>
+                                                        <div role='button' class="left-sub col d-flex btn-showcomment-like" id='btn-showcomment-like-${dataPost[i]["id"]}'>
                                                             <span class="material-icons">thumb_up</span>
                                                             <h6> Like</h6>
                                                         </div>
@@ -249,21 +255,6 @@ function showPostData(){
                                             <!-- List Comment -->
                                             <div class="list-recent-comment">
 
-                                                <!-- INSERT LIST COMMENT HERE -->
-                                                <div class="recent-comment my-2" style="background-color: #f3f3f3; padding: 5px 10px; border-radius: 10px">
-                                                    <div class="header-comment">
-                                                        <div class="d-flex">
-                                                            <img src="image/miru_4.png" id="user-image" class="user-image" alt="" width="40px" height="50px" style="padding=0px">
-                                                            <div class="d-block" style="align-self: center; margin:0px 5px">
-                                                                <h6 style="margin: 0;">Erlangga AH</h6>
-                                                                <h6 class="text-muted" style="margin: 0;">16 January 2002</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="main-comment">
-                                                        <p>Hello world</p>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <!-- End List Comment -->
 
@@ -275,7 +266,7 @@ function showPostData(){
                                                 <div class="d-flex form-create-comment" style="width:-webkit-fill-available">
                                                     <img src="image/miru_4.png" class="user-image" id="user-image" alt="" width="40px" height="50px">
                                                     <div class="comment-post d-flex">
-                                                        <textarea name="create-showpost-comment" id="create-showpost-comment-${dataPost[i]["id"]}" class="create-post-comment" placeholder="Put your comment here" style="margin-right: 10px; max-height:82px" required></textarea>
+                                                        <textarea name="create-showpost-comment" id="create-showpost-comment-${dataPost[i]["id"]}" class="create-showpost-comment" placeholder="Put your comment here" style="margin-right: 10px; max-height:82px" required></textarea>
                                                         <div class="d-block">
                                                             <button type="button" class="btn-comment-show" id="btn-comment-show-${dataPost[i]["id"]}" style="height: fit-content; width:100%; margin-bottom:3px;">Send</button>
                                                         </div>
@@ -288,93 +279,218 @@ function showPostData(){
                                 </div>
                             </div>
                         </form>
-                        `
+                    `
 
-                        // Input
-                        let divRecentPost = document.getElementsByClassName("recent-post");
-                        
-                        // Button
-                        let btnAddLike = document.getElementsByClassName("btn-like");
-                        let btnAddComment = document.getElementsByClassName("btn-comment");
-                        let btnShowComment = document.getElementsByClassName("btnShowComment")
-                        
-                        for(let k = 0; k < divRecentPost.length; k++){
-                            if(btnAddLike[k]){
-                                btnAddLike[k].addEventListener("click", function(){
-                                    // erase();
-                                    let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
-                                    let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
+                    // Div
+                    let divRecentPost = document.getElementsByClassName("recent-post");
+                    
+                    // Button Recent Post no Module
+                    let btnAddLike = document.getElementsByClassName("btn-like");
+                    let btnAddLikeShowComment = document.getElementsByClassName("btn-showcomment-like");
+                    let btnAddComment = document.getElementsByClassName("btn-comment");
+                    let btnAddCommentShow = document.getElementsByClassName("btn-comment-show");
+                    let btnShowComment = document.getElementsByClassName("btnShowComment");
+                    
+                    for(let k = 0; k < divRecentPost.length; k++){
+
+                        // ADD LIKE SECTION
+                        if(btnAddLike[k] || btnAddLikeShowComment[k]){
+                            btnAddLike[k].addEventListener("click", function(){
+                                // erase();
+                                let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
+                                let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
+                                let userSession = auth.currentUser;
+                                let postId = ref(database, "posts/" + divRecentPostUID + "/id");
+
+                                onValue(postId, (snapshot) => {
+                                    if(snapshot.val() == divRecentPostID){
+                                        set(ref(database, "posts/" + divRecentPostUID + "/like/" + uuidv4()), {
+                                            user_id : userSession.uid
+                                        }).then(() => {
+                                            alert("data Inserted");
+                                            location.reload();
+                                        });
+                                    }
+                                    else{
+                                        alert("No Like");
+                                        console.log(divRecentPostID);
+                                        console.log(snapshot.val());
+                                        // Delete Like
+                                        // remove(ref(database, "posts/" + i + "/like"), 
+                                        // orderByValue(userSession.uid)).then(() => {
+                                        //     alert("data updated");
+                                        //     location.reload();
+                                        // });
+                                    }
+                                    
+                                });
+                            });
+                            btnAddLikeShowComment[k].addEventListener("click", function(){
+                                let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
+                                let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
+                                let userSession = auth.currentUser;
+                                let postId = ref(database, "posts/" + divRecentPostUID + "/id");
+
+                                onValue(postId, (snapshot) => {
+                                    if(snapshot.val() == divRecentPostID){
+                                        set(ref(database, "posts/" + divRecentPostUID + "/like/" + uuidv4()), {
+                                            user_id : userSession.uid
+                                        }).then(() => {
+                                            alert("data Inserted");
+                                            location.reload();
+                                        });
+                                    }
+                                    else{
+                                        alert("No Like");
+                                        console.log(divRecentPostID);
+                                        console.log(snapshot.val());
+                                        // Delete Like
+                                        // remove(ref(database, "posts/" + i + "/like"), 
+                                        // orderByValue(userSession.uid)).then(() => {
+                                        //     alert("data updated");
+                                        //     location.reload();
+                                        // });
+                                    }
+                                    
+                                });
+                            });
+                        }
+
+                        // ADD COMMENT SECTION 
+                        if(btnAddComment[k] || btnAddCommentShow[k]){
+                            btnAddComment[k].addEventListener("click", function(){
+                                // let inputComment = document.getElementById("create-post-comment" + dataPost[i]["id"]).value;
+                                let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
+                                let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
+                                let inputComment = document.getElementsByClassName("create-post-comment")[k].value;
+                                if(!inputComment){
+                                    alert("data not accepted");
+                                    return;
+                                }else{
                                     let userSession = auth.currentUser;
                                     let postId = ref(database, "posts/" + divRecentPostUID + "/id");
 
                                     onValue(postId, (snapshot) => {
                                         if(snapshot.val() == divRecentPostID){
-                                            set(ref(database, "posts/" + divRecentPostUID + "/like/" + uuidv4()), {
-                                                user_id : userSession.uid
-                                            }).then(() => {
-                                                alert("data Inserted");
+                                            let dt = new Date();
+                                            let dy = new Date();
+
+                                            const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+                                            let dd = String(dt.getDate());
+                                            let mm = month[dt.getMonth()];
+                                            let yyyy = dt.getFullYear();
+
+                                            dy = dd + ' ' + mm + ' ' + yyyy;
+                                    
+                                            set(ref(database, 'posts/' + divRecentPostUID + '/comment/' + dt.getTime()),{
+                                                user_id : userSession.uid,
+                                                comment_content : inputComment,
+                                                comment_date : dy
+                                        
+                                            }).then( () =>{
+                                                alert("Data Inserted");
                                                 location.reload();
+                                            }).catch((error) => {
+                                                alert("Data not Inserted" + error.message);
                                             });
                                         }
                                         else{
-                                            alert("No Like");
-                                            console.log(divRecentPostID);
-                                            console.log(snapshot.val());
-                                            // Delete Like
-                                            // remove(ref(database, "posts/" + i + "/like"), 
-                                            // orderByValue(userSession.uid)).then(() => {
-                                            //     alert("data updated");
-                                            //     location.reload();
-                                            // });
+                                            alert("data not inserted");
+                                            return;
                                         }
-                                        
                                     });
-                                });
-                            }
-                            if(btnAddComment[k]){
-                                btnAddComment[k].addEventListener("click", function(){
-                                    // let inputComment = document.getElementById("create-post-comment" + dataPost[i]["id"]).value;
-                                    let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
-                                    let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
-                                    let inputComment = document.getElementsByClassName("create-post-comment")[k].value;
-                                    if(!inputComment){
-                                        alert("data not accepted");
-                                        return;
-                                    }else{
-                                        let userSession = auth.currentUser;
-                                        let postId = ref(database, "posts/" + divRecentPostUID + "/id");
+                                }
+                            });
+                            btnAddCommentShow[k].addEventListener("click", function(){
+                                let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
+                                let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
+                                let inputComment = document.getElementsByClassName("create-showpost-comment")[k].value;
+                                if(!inputComment){
+                                    alert("data not accepted");
+                                    return;
+                                }else{
+                                    let userSession = auth.currentUser;
+                                    let postId = ref(database, "posts/" + divRecentPostUID + "/id");
 
-                                        onValue(postId, (snapshot) => {
-                                            if(snapshot.val() == divRecentPostID){
-                                                let dt = new Date();
+                                    onValue(postId, (snapshot) => {
+                                        if(snapshot.val() == divRecentPostID){
+                                            let dt = new Date();
+                                            let dy = new Date();
+
+                                            const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+                                            let dd = String(dt.getDate());
+                                            let mm = month[dt.getMonth()];
+                                            let yyyy = dt.getFullYear();
+
+                                            dy = dd + ' ' + mm + ' ' + yyyy;
+                                    
+                                            set(ref(database, 'posts/' + divRecentPostUID + '/comment/' + dt.getTime()),{
+                                                user_id : userSession.uid,
+                                                comment_content : inputComment,
+                                                comment_date: dy
                                         
-                                                set(ref(database, 'posts/' + divRecentPostUID + '/comment/' + dt.getTime()),{
-                                                    user_id : userSession.uid,
-                                                    comment_content : inputComment
-                                            
-                                                }).then( () =>{
-                                                    alert("Data Inserted");
-                                                    location.reload();
-                                                }).catch((error) => {
-                                                    alert("Data not Inserted" + error.message);
-                                                });
-                                            }
-                                            else{
-                                                alert("data not inserted");
-                                                return;
-                                            }
+                                            }).then( () =>{
+                                                alert("Data Inserted");
+                                                location.reload();
+                                            }).catch((error) => {
+                                                alert("Data not Inserted" + error.message);
+                                            });
+                                        }
+                                        else{
+                                            alert("data not inserted");
+                                            return;
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
+                        // SHOW COMMENT MODAL SECTION
+                        if(btnShowComment[k]){
+                            btnShowComment[k].addEventListener("click", function(){
+                                
+                                // Show Comment by Module Start Here
+                                console.log("Hello World");
+                                let divRecentPostUID = document.getElementsByClassName("recent-post-uid")[k].value;
+                                let divRecentPostID = document.getElementsByClassName("recent-post-id")[k].value;
+                                let userSession = auth.currentUser;
+                                let commentId = ref(database, "posts/" + divRecentPostUID + "/comment");
+
+                                onValue(commentId, (snapshot) => {
+                                    let commentData = snapshot.val();
+
+                                    console.log(commentData);
+                                    for(let l in commentData){
+                                        let userCommentDataRef = ref(database, "users/" + commentData[l]["user_id"] + "/profile");
+                                        onValue(userCommentDataRef, (userCommentDataSnapshot) => {
+                                            let commentUsername = userCommentDataSnapshot.val().username;
+                                            document.getElementsByClassName("list-recent-comment")[k].innerHTML += `
+                                                <!-- INSERT LIST COMMENT HERE -->
+                                                    <div class="recent-comment my-2" style="background-color: #f3f3f3; padding: 5px 10px; border-radius: 10px">
+                                                        <div class="header-comment">
+                                                            <div class="d-flex">
+                                                                <img src="image/miru_4.png" id="other-user-image" class="other-user-image" alt="" width="40px" height="50px" style="padding=0px">
+                                                                <div class="d-block" style="align-self: center; margin:0px 5px">
+                                                                    <h6 style="margin: 0;">${commentUsername}</h6>
+                                                                    <h6 class="text-muted" style="margin: 0;">${commentData[l]["comment_date"]}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="main-comment">
+                                                            <p>${commentData[l]["comment_content"]}</p>
+                                                        </div>
+                                                    </div>
+                                                <!-- END -->
+                                            `
                                         });
-    
-                                        
                                     }
                                 });
-                            }
-                            if(btnShowComment[k]){
-                                btnShowComment[k].addEventListener("click", function(){
-                                    console.log("Hello World");
-                                });
-                            }
+
+                            });
                         }
+                    }
                 });
             });
         }
@@ -383,6 +499,79 @@ function showPostData(){
 
 function showPostComment(){
 
+}
+
+function editProfile(){
+    if(divEdit.style.display == "none"){
+        divEdit.style.display = "block";
+        getProfile();
+    }else{
+        divEdit.style.display = "none";
+    }
+}
+
+function saveProfile(){
+    const userSession = auth.currentUser;
+
+    // Form Input
+    let editUsername = document.getElementById("editUsername").value;
+    let editEmail = document.getElementById("editEmail").value;
+    let editPassword = document.getElementById("editPassword").value;
+    let editPassword1 = document.getElementById("editPassword1").value;
+    let editAlamat = document.getElementById("editAlamat").value;
+
+    // Validate Password
+    if(editPassword != null){
+
+        if(editPassword == editPassword1){
+            updatePassword(userSession, editPassword).then(() => {
+
+                console.log("Password Updated");
+            }).catch((error) => {
+                console.log(error);
+                return;
+            });
+        }
+    }else{
+        console.log("No Password Changed");
+    }
+
+    if(!editUsername || !editAlamat){
+        alert("Please Complete the Form");
+        return;
+    
+    }else{
+    const newData = {
+        username : editUsername,
+        alamat : editAlamat
+    };
+
+    update(ref(database, "users/" + userSession.uid + "/profile"), newData);
+    location.reload();
+    }
+}
+
+function changePassword(){
+    let inputPassword = document.getElementById("editPassword");
+    let inputPassword1 = document.getElementById("editPassword1");
+  
+    if(inputPassword.hasAttribute("disabled") & inputPassword1.hasAttribute("disabled")){
+      inputPassword.removeAttribute("disabled");
+      inputPassword1.removeAttribute("disabled");
+    }else{
+      inputPassword.setAttribute("disabled", "");
+      inputPassword1.setAttribute("disabled", "");
+    }
+  }
+  
+  function getProfile(){
+    const user = auth.currentUser;
+    return onValue(ref(database, 'users/' + user.uid + "/profile"), (snapshot) => {
+      document.getElementById("editUsername").value = snapshot.val()["username"];
+      document.getElementById("editEmail").value = snapshot.val()["email"];
+      document.getElementById("editAlamat").value = snapshot.val()["alamat"];
+    });
+  
 }
 
 

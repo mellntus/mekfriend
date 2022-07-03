@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-import { getDatabase, ref, push, remove, query, set, onValue, orderByChild, orderByValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+import { getDatabase, ref, push, remove, update, query, set, onValue, orderByChild, orderByValue } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, updatePassword,
   GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
@@ -37,10 +37,12 @@ onAuthStateChanged(auth, (user) => {
 
           // console.log(data["username"]);
 
-          let username =document.getElementsByClassName("user-name");
+          let username = document.getElementsByClassName("user-name");
+          let userAlamat = document.getElementById("user-alamat");
           for(let i = 0; i<username.length; i++){
             if(data["username"] != null){
               username[i].innerHTML = data["username"];
+              userAlamat.innerHTML = data["alamat"];
             }else{
               username[i].innerHTML = user.displayName;
             }
@@ -61,6 +63,7 @@ export{
   signInWithPopup,
   ref,
   push,
+  update,
   remove,
   query,
   orderByChild,

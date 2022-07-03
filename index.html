@@ -84,13 +84,39 @@
                 <div class="left-col-profile">
                     <form action="">
                         <div class="img-profile" style="text-align: center;">
-                            <img src="image/sincan.png" alt="" style="width: -webkit-fill-available; border-radius: 50px; height: 30vh;">
+                            <img src="image/sincan.png" alt="" style="width: -webkit-fill-available; border-radius: 50px; height: 20vh;">
                         </div>
                         <div class="data-profile">
                             <h6 class="user-name my-1" id="user-name" style="font-size: x-large;"></h6>
-                            <h6 class="user-alamat my-1" id="user-alamat" style="font-size: small;">Bulak Teko City, Jakarta Utara</h6>
+                            <h6 class="user-alamat my-1" id="user-alamat" style="font-size: small;"></h6>
                         </div>
                         <button type="button" class="btn-edit-profile my-2" id="btn-edit-profile" style="width: 100%;">Edit Profile</button>
+                        <div class="get-profile-data" id="get-profile-data" style="display: none;">
+                            <div class="group d-block">
+                                <label>Username</label>
+                                <input id="editUsername" class="w-100" type="text" required>
+                            </div>
+                            <div class="group">
+                                <label>Email</label>
+                                <input id="editEmail" class="w-100" type="email" required disabled>
+                            </div>
+                            <div class="changePassword" id="changePassword">
+                                <div class="group">
+                                    <label>Password</label>
+                                    <input id="editPassword" class="w-100" type="password" required disabled>
+                                </div>
+                                <div class="group">
+                                    <label>Confirm Password</label>
+                                    <input id="editPassword1" class="w-100" type="password" disabled>
+                                </div>
+                                <button type="button" id="btnChangePassword">Change Password?</button>
+                            </div>
+                            <div class="group" id="input-editAlamat">
+                                <label>Alamat</label>
+                                <textarea id="editAlamat" class="w-100" style="max-height: 30vh; font-size: small;"></textarea>
+                            </div>
+                            <button id="btnSaveProfile" type="button" class="button buttonBlue">Save Change</button>
+                        </div>
                     </form>
                 </div>
                 <!-- End Left Col Profile -->
@@ -239,19 +265,19 @@
                                     <h6 class="text-muted" id="create-post-date" class="create-post-date">16 September 2022</h6>
                                 </div>
                             </div>
-                            <p id="recent-showpost-content">${dataPost[i]["post_content"]}</p>
+                            <p id="recent-showpost-content"></p>
                             <hr style="margin: 0px;">
                             <div class="recent-bottom">
                                 <div class="row">
-                                    <div role='button' class="left-sub col d-flex btn-like" id='btn-like-${dataPost[i]["id"]}'>
+                                    <div role='button' class="left-sub col d-flex btn-like" id='btn-like'>
                                         <span class="material-icons">thumb_up</span>
                                         <h6> Like</h6>
                                     </div>
-                                    <div class="mid-sub col d-flex btn-cmd" id='btn-cmd-${dataPost[i]["id"]}' >
+                                    <div class="mid-sub col d-flex btn-cmd" id='btn-cmd' >
                                         <span class="material-icons">comment</span>
                                         <h6> Comment</h6>
                                     </div>
-                                    <div class="right-sub col d-flex btn-share" id='btn-share-${dataPost[i]["id"]}' >
+                                    <div class="right-sub col d-flex btn-share" id='btn-share' >
                                         <span class="material-icons">share</span>
                                         <h6> Share</h6>
                                     </div>

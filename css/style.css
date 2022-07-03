@@ -255,9 +255,9 @@ button:active{
     font-size: smaller;
 }
 
-[id^=user-name]{
+/* [id^=user-name]{
     text-transform: capitalize;
-}
+} */
 
 .text-muted{
     font-size: smaller;

@@ -90,7 +90,39 @@
                             <h6 class="user-name my-1" id="user-name" style="font-size: x-large;"></h6>
                             <h6 class="user-alamat my-1" id="user-alamat" style="font-size: small;">Bulak Teko City, Jakarta Utara</h6>
                         </div>
-                        <button type="button" class="btn-edit-profile my-2" id="btn-edit-profile" style="width: 100%;">Edit Profile</button>
+                        <button type="button" class="btn-edit-profile my-2" id="btn-edit-profile" >Edit Profile</button>
+                        <div class="edit-profile" style="display: none" id="edit-profile">
+                            <div class="header">
+                                <h1>EDIT PROFILE</h1>
+                              </div>
+                              <form>
+                                <div class="group">
+                                  <input id="editUsername" type="text" required>
+                                  <label>Username</label>
+                                </div>
+                                <div class="group">
+                                  <input id="editEmail" type="email" required disabled>
+                                  <label>Email</label>
+                                </div>
+                                <div class="changePassword" id="changePassword">
+                                  <div class="group">
+                                    <input id="editPassword" type="password" required disabled>
+                                    <label>Password</label>
+                                  </div>
+                                  <div class="group">
+                                    <input id="editPassword1" type="password" disabled>
+                                    <label>Confirm Password</label>
+                                  </div>
+                                </div>
+                                <button type="button" id="btnChangePassword">Change Password?</button>
+                                <div class="group">
+                                  <textarea id="editAlamat" style="max-width: 30vh;"></textarea>
+                                  <label>Alamat</label>
+                                </div>
+                                <button id="btnSaveProfile" type="button" class="button buttonBlue">Save Change</button>
+                              </form>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <!-- End Left Col Profile -->

@@ -385,5 +385,96 @@ function showPostComment(){
 
 }
 
+// Edit Profile
+let btnEditProfile = document.getElementById("btn-edit-profile");
+let btnSaveProfile = document.getElementById("btnSaveProfile");
+let btnChangePassword = document.getElementById("btnChangePassword");
+
+// List Div
+let divEdit = document.getElementById("edit-profile");
+
+btnEditProfile.addEventListener("click", editProfile);
+btnSaveProfile.addEventListener("click", saveProfile);
+btnChangePassword.addEventListener("click", changePassword);
+
+function editProfile(){
+
+  if(divEdit.style.display = "none"){
+    divEdit.style.display = "block";
+    getProfile();
+  }else{
+    divEdit.style.display = "none";
+  }
+  
+}
+
+function saveProfile(){
+  // Initialize Current User
+  const user = auth.currentUser;
+
+  // Form Input
+  let editUsername = document.getElementById("editUsername").value;
+  let editEmail = document.getElementById("editEmail").value;
+  let editPassword = document.getElementById("editPassword").value;
+  let editPassword1 = document.getElementById("editPassword1").value;
+  let editAlamat = document.getElementById("editAlamat").value;
+
+  // Validate Password
+  if(editPassword != null){
+
+    if(editPassword == editPassword1){
+
+      updatePassword(user, editPassword).then(() => {
+        console.log("Password Updated");
+
+      }).catch((error) => {
+        console.log(error);
+        return;
+      });
+    };
+
+  }else{
+    console.log("No Password Changed");
+  }
+
+  if(!editUsername || !editAlamat){
+    alert("Please Complete the Form");
+    return;
+
+  }else{
+    const newData = {
+      username : editUsername,
+      alamat : editAlamat
+    };
+
+    update(ref(database, "users/" + user.uid + "/profile"), newData);
+    location.reload();
+  }
+  
+}
+
+function changePassword(){
+  let inputPassword = document.getElementById("editPassword");
+  let inputPassword1 = document.getElementById("editPassword1");
+
+  if(inputPassword.hasAttribute("disabled") & inputPassword1.hasAttribute("disabled")){
+    inputPassword.removeAttribute("disabled");
+    inputPassword1.removeAttribute("disabled");
+  }else{
+    inputPassword.setAttribute("disabled", "");
+    inputPassword1.setAttribute("disabled", "");
+  }
+}
+
+function getProfile(){
+  const user = auth.currentUser;
+  return onValue(ref(database, 'users/' + user.uid + "/profile"), (snapshot) => {
+    document.getElementById("editUsername").value = snapshot.val()["username"];
+    document.getElementById("editEmail").value = snapshot.val()["email"];
+    document.getElementById("editAlamat").value = snapshot.val()["alamat"];
+  });
+
+}
+
 
 

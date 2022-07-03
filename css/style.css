@@ -102,6 +102,7 @@ button:active{
 
 .user-image, .other-user-image{
     border-radius: 20px;
+
 }
 
 .copyright p{
@@ -371,3 +372,11 @@ button:active{
     filter: blur(8px);
     -webkit-filter: blur(8px);
 } */
+
+#btn-edit-profile{
+    width: 26%
+}
+
+.img-profile{
+    width: 26%;
+}

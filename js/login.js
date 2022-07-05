@@ -132,19 +132,42 @@ import {
             let yyyy = dt.getFullYear();
 
             dt = dd + ' ' + mm + ' ' + yyyy;
-            
-            set(ref(database, 'users/' + userGoogle.uid + '/profile'),{
-                username : userGoogle.displayName,
-                email : userGoogle.email,
-                last_login: dt,
-                alamat : ""
-        
-            }).then( () =>{
-                alert("Data Inserted, Welcome " + user.displayName);
-                window.location.href = "http://127.0.0.1:5500/index.html";
-            }).catch((error) => {
-                alert("Data not Inserted" + error.message);
-            });
+
+            let userGoogleRef = ref(database, "users/" + userGoogle.uid + "/profile");
+
+            onValue(userGoogleRef, (snapshot) => {
+                console.log(snapshot.val());
+                if(snapshot.val() != null){
+                    let alamatUserGoogle = snapshot.val().alamat;
+                    let usernameUserGoogle = snapshot.val().username;
+
+                    set(userGoogleRef,{
+                        username : usernameUserGoogle,
+                        email : userGoogle.email,
+                        last_login: dt,
+                        alamat : alamatUserGoogle
+                
+                    }).then( () =>{
+                        alert("Welcome Back, " + usernameUserGoogle);
+                        window.location.href = "http://127.0.0.1:5500/index.html";
+                    }).catch((error) => {
+                        alert("Data not Inserted" + error.message);
+                    });set
+                }if(snapshot.val() == null){
+                    set(ref(database, 'users/' + userGoogle.uid + '/profile'),{
+                        username : userGoogle.displayName,
+                        email : userGoogle.email,
+                        last_login: dt,
+                        alamat : ""
+                
+                    }).then( () =>{
+                        alert("Data Inserted, Welcome " + user.displayName);
+                        window.location.href = "http://127.0.0.1:5500/index.html";
+                    }).catch((error) => {
+                        alert("Data not Inserted" + error.message);
+                    });
+                }
+            });            
 
         }).catch((error) => {
             alert("Login Error " + error.message);

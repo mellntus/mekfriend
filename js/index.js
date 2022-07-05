@@ -17,11 +17,6 @@ import{
     uuidv4
 } from "./uuid.js"
 
-// let midCol = document.getElementById("mid-col");
-// function erase(){
-//     midCol.innerHTML = '';
-// }
-
 // Button
 let btnLogout = document.getElementById("btnLogout");
 let btnCreatePost = document.getElementById("btnCreatePost");
@@ -259,7 +254,7 @@ function showPostData(){
                                         <div class="comment-post d-flex">
                                             <textarea name="create-post-comment" id="create-post-comment" class="create-post-comment" placeholder="Put your comment here" style="margin-right: 10px; max-height:82px; min-height:42px" required></textarea>
                                             <div class="d-block">
-                                                <button type="button" class="btn-comment" id="btn-comment-${dataPost[i]["id"]}" style="height: fit-content; width:100%; margin-bottom:3px;">Send</button>
+                                                <button type="button" class="btn-comment" id="btn-comment-${dataPost[i]["id"]}" style="height: fit-content; width:100%; margin-bottom:3px;"><span class="material-icons" style="vertical-align: text-bottom;">send</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -427,10 +422,7 @@ function showPostData(){
                                     
                                     let getPostData = getPostSnapshot.val();
                                     for(let n in getPostData){
-                                        if(getPostData[n]["post_id"] != divRecentPostID){
-                                            alert("You cant delete other user post");
-                                            return;
-                                        }else{
+                                        if(getPostData[n]["post_id"] == divRecentPostID){
                                             remove(ref(database, "posts/" + divRecentPostUID))
                                             .catch((error) => {
                                                 alert("Data not Deleted " + error.message);
@@ -443,6 +435,8 @@ function showPostData(){
                                             }).catch((error) => {
                                                 alert("Data not Deleted " + error.message);
                                             });
+                                        }else{
+                                            
                                         }
                                     }
 
